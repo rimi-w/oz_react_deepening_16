@@ -18,20 +18,20 @@ const Todo = () => {
             createdAt: new Date(),
         };
 
-        setTodos([...todos, newTodo]);
-    }, [todos]);
+        setTodos((prev) => [...prev, newTodo]);
+    }, []);
 
     const handleToggle = useCallback((id) => {
-        setTodos(todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)));
-    }, [todos]);
+        setTodos((prev) => prev.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)));
+    }, []);
 
     const handleDelete = useCallback((id) => {
-        setTodos(todos.filter((todo) => todo.id !== id));
-    }, [todos]);
+        setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    }, []);
 
     const handleEdit = useCallback((id, newText) => {
-        setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo)));
-    }, [todos]);
+        setTodos((prev) => prev.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo)));
+    }, []);
 
     const handleFilterChange = useCallback((newFilter) => {
         setFilter(newFilter);
